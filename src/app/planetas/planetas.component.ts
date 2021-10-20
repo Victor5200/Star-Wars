@@ -14,6 +14,7 @@ export class PlanetasComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Planetas[]>('https://swapi.dev/api/planets')
       .subscribe(resultado => console.log(resultado));
+
   }
 
 
