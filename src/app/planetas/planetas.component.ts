@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Planetas } from '../models/planetas.model';
+import {Planeta, RetornoListaPlanetas} from "../models/planetas.model";
+
 
 @Component({
   selector: 'app-planetas',
@@ -9,12 +10,18 @@ import { Planetas } from '../models/planetas.model';
 })
 export class PlanetasComponent implements OnInit {
 
+  planetas: Planeta[]
+
+
+
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<Planetas[]>('https://swapi.dev/api/planets')
-      .subscribe(resultado => console.log(resultado));
-
+    this.http.get<RetornoListaPlanetas>('https://swapi.dev/api/planets')
+      .subscribe(resultado => {
+        this.planetas = resultado.results;
+      });
   }
 
 
